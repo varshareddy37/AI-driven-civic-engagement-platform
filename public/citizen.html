@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Citizen Dashboard</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#141E30,#243B55);
+}
+
+.quote{
+font-family:'Playfair Display',serif;
+font-style:italic;
+}
+
+.card{
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-6px) scale(1.05);
+}
+
+</style>
+
+</head>
+
+<body class="text-white flex flex-col items-center">
+
+<div class="w-full flex justify-between p-6">
+
+<h1 class="text-3xl font-bold">
+Connect For Cause
+</h1>
+
+<button onclick="logout()" class="bg-red-500 px-4 py-2 rounded">
+Logout
+</button>
+
+</div>
+
+
+<div class="text-center mt-10 mb-16">
+
+<h2 class="text-5xl font-bold mb-4">
+Citizen Dashboard
+</h2>
+
+<p class="quote text-lg text-gray-200">
+"Your voice can bring change to the community"
+</p>
+
+</div>
+
+
+<div class="grid grid-cols-3 gap-10">
+
+<div onclick="window.location='issues-map.html'" 
+class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-64">
+
+<h3 class="text-2xl font-bold mb-2">
+Issues Map
+</h3>
+
+<p>View all reported issues on map</p>
+
+</div>
+
+<div onclick="goReport()" class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-64">
+
+<h3 class="text-2xl font-bold mb-2">
+Report Issue
+</h3>
+
+<p>Report a new community issue</p>
+
+</div>
+
+
+<div onclick="goMyIssues()" class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-64">
+
+<h3 class="text-2xl font-bold mb-2">
+My Issues
+</h3>
+
+<p>View issues you reported</p>
+
+</div>
+
+
+<div onclick="goTracking()" class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-64">
+
+<h3 class="text-2xl font-bold mb-2">
+Issue Tracking
+</h3>
+
+<p>Track campaign progress</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function logout(){
+window.location="login.html"
+}
+
+function goReport(){
+window.location="report-issue.html"
+}
+
+function goMyIssues(){
+window.location="my-issues.html"
+}
+
+function goTracking(){
+window.location="issue-tracking.html"
+}
+
+</script>
+
+</body>
+</html>

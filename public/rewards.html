@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Reward Points</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#141E30,#243B55);
+}
+
+</style>
+
+</head>
+
+<body class="p-10 text-white flex flex-col items-center">
+
+<h1 class="text-4xl font-bold mb-8">
+Reward Points
+</h1>
+
+<div class="bg-white text-black p-10 rounded-xl shadow text-center">
+
+<h2 class="text-3xl font-bold mb-3">
+⭐ Your Points
+</h2>
+
+<p id="points" class="text-5xl font-bold text-green-600">
+0
+</p>
+
+</div>
+
+<button onclick="goBack()" class="bg-gray-500 px-4 py-2 rounded mt-8">
+Back
+</button>
+
+<script>
+
+const userId = localStorage.getItem("userId")
+
+function goBack(){
+window.location="volunteer.html"
+}
+
+async function loadPoints(){
+
+const res = await fetch("/user/"+userId)
+
+const data = await res.json()
+
+document.getElementById("points").innerText = data.points
+
+}
+
+loadPoints()
+
+</script>
+
+</body>
+</html>

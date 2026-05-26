@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Volunteer Dashboard</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#141E30,#243B55);
+}
+
+.quote{
+font-family:'Playfair Display',serif;
+font-style:italic;
+}
+
+.card{
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-6px) scale(1.05);
+}
+
+</style>
+
+</head>
+
+<body class="text-white flex flex-col items-center">
+
+<div class="w-full flex justify-between p-6">
+
+<h1 class="text-3xl font-bold">
+Connect For Cause
+</h1>
+
+<button onclick="logout()" class="bg-red-500 px-4 py-2 rounded">
+Logout
+</button>
+
+</div>
+
+
+<div class="text-center mt-10 mb-16">
+
+<h2 class="text-5xl font-bold mb-4">
+Volunteer Dashboard
+</h2>
+
+<p class="quote text-lg text-gray-200">
+"Helping others is the rent you pay for your room on earth"
+</p>
+
+</div>
+
+
+<div class="grid grid-cols-4 gap-10">
+
+<div onclick="window.location='issues-map.html'" 
+class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-56">
+
+<h3 class="text-xl font-bold mb-2">
+Issues Map
+</h3>
+
+<p>Explore issues on map</p>
+
+</div>
+
+<div onclick="goBrowse()" class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-56">
+
+<h3 class="text-xl font-bold mb-2">
+Browse Campaigns
+</h3>
+
+<p>Find campaigns to help</p>
+
+</div>
+
+
+<div onclick="goMy()" class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-56">
+
+<h3 class="text-xl font-bold mb-2">
+My Campaigns
+</h3>
+
+<p>View joined campaigns</p>
+
+</div>
+
+
+<div onclick="goRewards()" class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-56">
+
+<h3 class="text-xl font-bold mb-2">
+Reward Points
+</h3>
+
+<p>See earned rewards</p>
+
+</div>
+
+
+<div onclick="goExperience()" class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-56">
+
+<h3 class="text-xl font-bold mb-2">
+Share Experience
+</h3>
+
+<p>Tell about your campaign</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function logout(){
+window.location="login.html"
+}
+
+function goBrowse(){
+window.location="browse-campaigns.html"
+}
+
+function goMy(){
+window.location="my-campaigns.html"
+}
+
+function goRewards(){
+window.location="rewards.html"
+}
+
+function goExperience(){
+window.location="share-experience.html"
+}
+
+</script>
+
+</body>
+</html>

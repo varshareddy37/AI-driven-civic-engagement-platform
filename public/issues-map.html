@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Issues Map</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+
+body{
+background:linear-gradient(135deg,#141E30,#243B55);
+font-family:Poppins;
+}
+
+#map{
+height:500px;
+}
+
+</style>
+
+</head>
+
+<body class="p-10 text-white">
+
+<div class="flex justify-between mb-6">
+
+<h1 class="text-3xl font-bold">
+Community Issues Map
+</h1>
+
+<button onclick="goBack()" class="bg-gray-500 px-4 py-2 rounded">
+Back
+</button>
+
+</div>
+
+<div id="map" class="rounded shadow"></div>
+
+<script>
+
+function goBack(){
+window.history.back()
+}
+
+const map = L.map('map').setView([20.5937,78.9629],5)
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+maxZoom:19
+}).addTo(map)
+
+async function loadIssues(){
+
+const res = await fetch("/issues")
+
+const issues = await res.json()
+
+issues.forEach(issue=>{
+
+if(!issue.location) return
+
+const coords = issue.location.split("=")[1]
+
+if(!coords) return
+
+const lat = coords.split(",")[0]
+const lng = coords.split(",")[1]
+
+const marker = L.marker([lat,lng]).addTo(map)
+
+marker.bindPopup(`
+
+<b>${issue.description}</b>
+<br>
+<a href="${issue.location}" target="_blank">
+Open Location
+</a>
+
+`)
+
+})
+
+}
+
+loadIssues()
+
+</script>
+
+</body>
+</html>

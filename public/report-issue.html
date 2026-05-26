@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Report Issue</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#141E30,#243B55);
+}
+
+</style>
+
+</head>
+
+<body class="p-10 text-white">
+
+<div class="flex justify-between mb-8">
+
+<h1 class="text-3xl font-bold">Report Issue</h1>
+
+<button onclick="goBack()" class="bg-gray-500 px-4 py-2 rounded">
+Back
+</button>
+
+</div>
+
+
+<div class="bg-white text-black p-6 rounded-xl shadow w-1/2">
+
+<input type="file" id="image" class="border p-2 w-full mb-3">
+
+<textarea
+id="description"
+placeholder="Describe the issue"
+class="border p-2 w-full mb-3">
+</textarea>
+<textarea
+id="description"
+placeholder="Describe the issue"
+class="border p-2 w-full mb-3">
+</textarea>
+
+<!-- AI Generate Button -->
+<button onclick="generateDescription()"
+class="bg-purple-600 text-white px-4 py-2 rounded mb-3 w-full">
+
+Generate Description with AI
+
+</button>
+
+<input id="location"
+placeholder="Location (Google Maps link)"
+class="border p-2 w-full mb-3">
+
+<button onclick="getLocation()"
+class="bg-gray-600 text-white px-4 py-2 rounded mb-3 w-full">
+
+Use Current Location
+
+</button>
+
+<input id="phone"
+placeholder="Phone number"
+class="border p-2 w-full mb-3">
+
+<button onclick="submitIssue()"
+class="bg-blue-600 text-white px-4 py-2 rounded w-full">
+
+Submit Issue
+
+</button>
+
+</div>
+
+
+<script>
+
+const userId = localStorage.getItem("userId")
+
+function goBack(){
+window.location="citizen.html"
+}
+
+function getLocation(){
+
+navigator.geolocation.getCurrentPosition(position=>{
+
+const lat = position.coords.latitude
+const lng = position.coords.longitude
+
+const mapLink = `https://www.google.com/maps?q=${lat},${lng}`
+
+document.getElementById("location").value = mapLink
+
+})
+
+}
+
+async function submitIssue(){
+
+const formData=new FormData()
+
+formData.append("image",document.getElementById("image").files[0])
+formData.append("description",document.getElementById("description").value)
+formData.append("location",document.getElementById("location").value)
+formData.append("phone",document.getElementById("phone").value)
+formData.append("userId",userId)
+
+await fetch("/report",{
+method:"POST",
+body:formData
+})
+
+alert("Issue Reported Successfully")
+
+window.location="my-issues.html"
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>My Campaigns</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#141E30,#243B55);
+}
+
+</style>
+
+</head>
+
+<body class="p-10 text-white">
+
+<div class="flex justify-between mb-8">
+
+<h1 class="text-3xl font-bold">
+My Campaigns
+</h1>
+
+<button onclick="goBack()" class="bg-gray-500 px-4 py-2 rounded">
+Back
+</button>
+
+</div>
+
+<div id="campaigns" class="grid grid-cols-3 gap-8"></div>
+
+<script>
+
+const volunteerId = localStorage.getItem("userId")
+
+function goBack(){
+window.location="volunteer.html"
+}
+
+async function loadCampaigns(){
+
+const res = await fetch("/campaigns")
+
+const data = await res.json()
+
+let html=""
+
+data.forEach(c=>{
+
+if(!c.volunteers.includes(volunteerId)) return
+
+html += `
+
+<div class="bg-white text-black p-5 rounded-xl shadow">
+
+<h2 class="font-bold text-xl mb-2">
+${c.title}
+</h2>
+
+<p>Date: ${c.date}</p>
+
+<p>Time: ${c.time}</p>
+
+<p>Status: ${c.status}</p>
+
+</div>
+
+`
+
+})
+
+document.getElementById("campaigns").innerHTML = html
+
+}
+
+loadCampaigns()
+
+</script>
+
+</body>
+</html>

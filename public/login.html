@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Login</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#141E30,#243B55);
+min-height:100vh;
+}
+
+.quote{
+font-family:'Playfair Display',serif;
+font-style:italic;
+}
+
+.card{
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px) scale(1.02);
+}
+
+</style>
+
+</head>
+
+<body class="flex flex-col items-center justify-center text-white">
+
+
+<!-- Title -->
+
+<h1 class="text-6xl font-bold mb-3">
+Connect For Cause
+</h1>
+
+<p class="quote text-lg text-gray-200 mb-12">
+"Alone we can do so little, together we can do so much"
+</p>
+
+
+<!-- Login Card -->
+
+<div class="card bg-white text-black p-8 rounded-xl shadow-xl w-80">
+
+<h2 class="text-2xl font-bold mb-6 text-center">
+Login
+</h2>
+
+<input
+id="email"
+type="email"
+placeholder="Email"
+class="border p-2 w-full mb-3 rounded"
+/>
+
+<input
+id="password"
+type="password"
+placeholder="Password"
+class="border p-2 w-full mb-4 rounded"
+/>
+
+<button
+onclick="login()"
+class="bg-blue-600 text-white w-full p-2 rounded hover:bg-blue-700"
+>
+Login
+</button>
+
+<p class="text-sm mt-4 text-center">
+
+Don't have an account?
+
+<a href="signup.html" class="text-blue-600 font-bold">
+Signup
+</a>
+
+</p>
+
+</div>
+
+
+<script>
+
+async function login(){
+
+const email = document.getElementById("email").value
+const password = document.getElementById("password").value
+
+const res = await fetch("/login",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+email,
+password
+})
+
+})
+
+const data = await res.json()
+
+localStorage.setItem("userId", data.userId)
+
+if(data.role === "citizen"){
+window.location="citizen.html"
+}
+
+else if(data.role === "ngo"){
+window.location="ngo.html"
+}
+
+else if(data.role === "volunteer"){
+window.location="volunteer.html"
+}
+
+else{
+alert(data.message)
+}
+
+}
+
+</script>
+
+</body>
+</html>

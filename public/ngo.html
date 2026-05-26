@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>NGO Dashboard</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#141E30,#243B55);
+}
+
+.card{
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px) scale(1.05);
+}
+
+</style>
+
+</head>
+
+<body class="text-white flex flex-col items-center">
+
+<div class="w-full flex justify-between p-6">
+
+<h1 class="text-3xl font-bold">
+Connect For Cause
+</h1>
+
+<button onclick="logout()" class="bg-red-500 px-5 py-2 rounded">
+Logout
+</button>
+
+</div>
+
+
+<div class="text-center mt-10 mb-16">
+
+<h2 class="text-5xl font-bold mb-4">
+NGO Impact Dashboard
+</h2>
+
+<p class="text-xl italic text-gray-200">
+"Small acts multiplied by millions can change the world."
+</p>
+
+</div>
+
+
+<div class="grid grid-cols-3 gap-10">
+
+<div onclick="window.location='issues-map.html'" 
+class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-64">
+
+<h3 class="text-2xl font-bold mb-2">
+Issues Map
+</h3>
+
+<p>View issues location on map</p>
+
+</div>
+
+<div onclick="goIssues()" class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-64">
+
+<h3 class="text-2xl font-bold mb-2">Reported Issues</h3>
+
+<p>View citizen reported problems</p>
+
+</div>
+
+
+<div onclick="goCampaigns()" class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-64">
+
+<h3 class="text-2xl font-bold mb-2">Active Campaigns</h3>
+
+<p>Manage ongoing campaigns</p>
+
+</div>
+
+
+<div onclick="goHistory()" class="card bg-white text-black p-10 rounded-xl shadow cursor-pointer text-center w-64">
+
+<h3 class="text-2xl font-bold mb-2">Campaign History</h3>
+
+<p>View completed campaigns</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function logout(){
+window.location="login.html"
+}
+
+function goIssues(){
+window.location="reported-issues.html"
+}
+
+function goCampaigns(){
+window.location="active-campaigns.html"
+}
+
+function goHistory(){
+window.location="campaign-history.html"
+}
+
+</script>
+
+</body>
+</html>
